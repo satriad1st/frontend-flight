@@ -265,7 +265,7 @@ function Grafik(state) {
                     <div className="card mt-3">
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}>
                             <div className="row">
-                                <div className="col">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <Select
                                         value={selectedOrigin}
                                         onChange={onSelectChangeOrigin}
@@ -273,7 +273,7 @@ function Grafik(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <Select
                                         value={selectedDestination}
                                         onChange={onSelectChangeDestination}
@@ -281,7 +281,7 @@ function Grafik(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <DatePicker
                                         selected={selectedDate}
                                         dateFormat="dd/MM/yyyy"
@@ -295,7 +295,7 @@ function Grafik(state) {
                                         disabled={state.isLoading}
                                     />
                                     </div>
-                                <div className="col">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <button
                                         id="appliedButton"
                                         type="button"

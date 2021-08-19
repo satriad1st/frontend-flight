@@ -81,6 +81,14 @@
   margin-left: 0rem;
 }
 
+.image-width {
+  width: 300px;
+}
+
+.h-size {
+  font-size: 26px;
+}
+
 @media (min-width: 793px) {
   body:not(.sidebar-mini-md) .main-header {
     margin-left: 230px;
@@ -95,5 +103,15 @@
 @media (min-width: 320px) {
   .content-wrapper {
     margin-top: 70px;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-width {
+    width: 100px;
+  }
+
+  .h-size {
+    font-size: 14px;
   }
 }

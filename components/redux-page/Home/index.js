@@ -30,12 +30,12 @@ function Index(state) {
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}></div>
                         <div className="row" style={{minHeight:"400px"}}>
                             <div className="col-lg-12 col-md-12 col-12 d-flex align-items-center justify-content-center"> 
-                                <h4>Selamat Datang Di Website Perbandingan Harga Tiket Pesawat Terbang</h4>    
+                                <p className="text-center h-size">Selamat Datang Di Website Perbandingan Harga Tiket Pesawat Terbang</p>    
                             </div>
                             <div className="col-lg-12 col-md-12 col-12 d-flex align-items-center justify-content-center"> 
-                                <img src="images/tiket.jpeg" style={{width:"300px"}}/>
-                                <img src="images/agoda.png" style={{width:"300px"}}/>
-                                <img src="images/pegipegi.jpg" style={{width:"300px"}}/>
+                                <img src="images/tiket.jpeg" className="image-width"/>
+                                <img src="images/agoda.png" className="image-width"/>
+                                <img src="images/pegipegi.jpg" className="image-width"/>
                             </div>
                         </div>
                     </div>
