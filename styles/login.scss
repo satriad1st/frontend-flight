@@ -1,0 +1,243 @@
+/* LOGIN LAYOUT */
+
+.login-page {
+    font-family: "Gotham-Book";
+    justify-content: normal;
+    background-color: #f9f9fc;
+    height: -webkit-fill-available;
+  }
+  .login-box .alert-danger {
+    width: inherit;
+    z-index: 999;
+    position: absolute;
+    text-align: center;
+    color: #414042;
+    background: #fdd1d4;
+    border-color: #ff434f;
+  }
+  .login-box {
+    width: 480px;
+    margin-top: 70px;
+    margin-bottom: 140px;
+    background-color: #ffffff;
+  }
+  .login-box .card {
+    border: none;
+    margin-bottom: 0px;
+  }
+  .login-box .cursor-pointer {
+    cursor: pointer;
+  }
+  .login-box .login-card-body {
+    padding: 20px 85px;
+  }
+  .login-box h3.heading {
+    font-size: 28px;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #424143;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Medium";
+  }
+  .login-box p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #929293;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Book";
+  }
+  .login-box p.sub-heading {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #929293;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+  }
+  .login-box label:not(.form-check-label):not(.custom-file-label) {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+  }
+  .login-box input:disabled,
+  .login-box input::placeholder {
+    font-size: 14px;
+    color: #cccccd;
+    font-family: "Gotham-Book";
+  }
+  .login-box .form-control:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  .login-box .input-group .form-control:focus ~ .input-group-append .input-group-text {
+    border-color: #ebeaf3;
+  }
+  .login-box .input-group .form-control:focus ~ .input-group-append[data-valid="false"] .input-group-text {
+    border-color: #ff434f;
+  }
+  .login-box .form-control-lg {
+    font-size: 14px;
+    color: #414042;
+    border-color: #ebeaf3;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Book";
+  }
+  .login-box .input-group-text {
+    border-color: #ebeaf3;
+  }
+  .login-box .input-group-append[data-valid="false"] {
+    background-color: #fdd1d4;
+  }
+  .login-box .input-group-append[data-disabled="true"] {
+    background-color: #e9ecef;
+  }
+  .login-box input.is-invalid::placeholder {
+    font-size: 14px;
+    color: #414042;
+    font-family: "Gotham-Book";
+  }
+  .login-box .form-control.is-invalid {
+    color: #ff434f;
+    border-color: #ff434f;
+    background-color: #fdd1d4;
+    padding-right: calc(1.5em + 0.5rem);
+  }
+  .login-box .was-validated .form-control:invalid,
+  .login-box .form-control.is-invalid {
+    background-image: none;
+  }
+  .login-box .invalid-feedback.captcha-feedback {
+    text-align: right;
+  }
+  .login-box .fa.fa-eye,
+  .login-box .fa.fa-eye-slash {
+    opacity: 0.5;
+  }
+  .login-box .rounded-right {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .login-box .captcha-refresh {
+    font-size: 12px;
+    font-weight: 500;
+    color: #85532a;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    letter-spacing: normal;
+    font-family: "Gotham-Medium";
+  }
+  .login-box a {
+    font-size: 12px;
+    font-weight: 500;
+    color: #85532a;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    letter-spacing: normal;
+    font-family: "Gotham-Medium";
+  }
+  .login-box button,
+  .login-box button:hover {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #85532a;
+  }
+  .login-box .download-text {
+    font-size: 14px;
+    color: #85532a;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Bold";
+  }
+  .login-box .now-text {
+    font-size: 14px;
+    color: #85532a;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Book";
+  }
+  .login-box .download-icon {
+    width: 110px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .login-box.forgot-password-dialog {
+    width: 500px;
+    height: 400px;
+  }
+  .login-box .forgot-password-dialog .modal-content {
+    border: none;
+    border-radius: 0;
+  }
+  .login-box .forgot-password-dialog .forgot-password-container {
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-bottom: 40px;
+    padding-right: 100px;
+    text-align: center;
+  }
+  .login-box .forgot-password-dialog .forgot-password-title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #6b6a6b;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Medium";
+  }
+  .login-box .forgot-password-dialog .forgot-password-image img {
+    width: 160px;
+    height: 160px;
+  }
+  .login-box .forgot-password-dialog .forgot-password-description {
+    font-size: 12px;
+    margin-top: 20px;
+    line-height: 16px;
+    margin-bottom: 30px;
+    color: #6b6a6b;
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: "Gotham-Book";
+  }
+  .login-box .forgot-password-dialog .forgot-password-description .your-app {
+    font-weight: 600;
+    font-family: "Gotham-Medium";
+  }
+  .login-box .forgot-password-dialog .forgot-password-button {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: "Gotham-Bold";
+  }

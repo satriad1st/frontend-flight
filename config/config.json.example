@@ -1,0 +1,25 @@
+{
+  "app": {
+    "version": "TemplateHere Admin 1.0",
+    "base_url" : "http://localhost:3000"
+  },
+  "core": {
+    "private_gateway": {
+      "base_url" : "http://localhost:5000",
+      "login" : "/admin/login",
+      "me" : "/admin/me",
+      "update_profile" : "/admin/update",
+      "update_password" : "/admin/me/password",
+      "product" : "/admin/product",
+      "download_product" : "/admin/download-product",
+      "order" : "/admin/order",
+      "order_status" : "/admin/order-by-status",
+      "home" : "/admin/home",
+      "product_file" : "/admin/product-file",
+      "category" : "/admin/category",
+      "setting" : "/admin/setting",
+      "users" : "/admin/users",
+      "user_deactive" : "/admin/user-deactive"
+    }
+  }
+}

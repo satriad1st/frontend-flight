@@ -1,0 +1,99 @@
+/**
+ * App entry scss file
+ *
+ * @url https://getbootstrap.com/docs/4.0/getting-started/theming/
+ * @url https://getbootstrap.com/docs/4.0/getting-started/webpack/#importing-precompiled-sass
+ */
+
+@import "~bootstrap/scss/bootstrap";
+@import "~admin-lte/build/scss/AdminLTE-raw.scss";
+@import "login.scss";
+@import "pagination.scss";
+@import "add_product.scss";
+@import "datepicker.scss";
+.centerFlex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  min-height: 69px;
+}
+
+.navbar-toggle {
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+.navbar-light .form-control-navbar,
+.navbar-light .btn-navbar {
+  background-color: #ffffff;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-style: solid;
+  border-color: #f2f4f6;
+}
+
+.sidebar {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.sidebar-dark-purple .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light-purple .nav-sidebar > .nav-item > .nav-link.active-button {
+  color: #ffffff;
+  background-color: #8a440c8c;
+}
+
+.sidebar-dark-purple .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light-purple .nav-sidebar > .nav-item > .nav-link.active {
+  color: #8a440c8c;
+  background-color: transparent;
+}
+.color-red{
+  color: red
+}
+.button_primary{
+  background-color: #964b00;
+  color : white;
+}
+.sidebar-mini.sidebar-collapse .main-sidebar,
+.sidebar-mini.sidebar-collapse .main-sidebar::before {
+  width: 4.2rem;
+}
+
+.sidebar-mini.sidebar-collapse.layout-fixed .brand-link {
+  width: 4.2rem;
+}
+
+.nav-sidebar {
+  margin-top: 20px;
+}
+
+.nav-sidebar > .nav-item {
+  margin-bottom: 20px;
+}
+
+.nav-sidebar > .nav-item .nav-icon {
+  margin-left: 0rem;
+}
+
+@media (min-width: 793px) {
+  body:not(.sidebar-mini-md) .main-header {
+    margin-left: 230px;
+  }
+  .sidebar-mini.sidebar-collapse .content-wrapper,
+  .sidebar-mini.sidebar-collapse .main-footer,
+  .sidebar-mini.sidebar-collapse .main-header {
+    margin-left: 4rem !important;
+  }
+}
+
+@media (min-width: 320px) {
+  .content-wrapper {
+    margin-top: 70px;
+  }
+}

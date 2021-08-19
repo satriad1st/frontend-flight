@@ -1,0 +1,1 @@
+export const CRYPTO_KEY = "dwAdmdsFO8989Bjsk90"
