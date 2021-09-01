@@ -5,7 +5,7 @@
   },
   "core": {
     "private_gateway": {
-      "base_url" : "http://localhost:5000/api/v1",
+      "base_url" : "http://103.126.226.5/api/v1",
       "base_url_prod" : "http://103.126.226.5/api/v1",
       "tiket" : "/public/tiket",
       "pegipegi" : "/public/pegi-pegi",
