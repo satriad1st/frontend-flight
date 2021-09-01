@@ -28,7 +28,21 @@ function Tiket(state) {
         value : null,
         label : "Pilih Kota Tujuan"
     });
+
+    const [ selectedMaskapai, setMaskapai ] = useState({
+        value : null,
+        label : "Pilih Maskapai Penerbangan"
+    });
+
+
+    const [selecetedTime ,setTime] = useState({
+        value : null,
+        label : "Pilih Waktu Penerbangan"
+    })
+
     const [optionsAirport , setOptionsAirport] = useState(config.flight_code.data)
+    const [optionsMaskapai ,setOptionsMaskapai] = useState(config.maskapai.data)
+    const [optionsTime ,setOptionsTime] = useState(config.time.data)
     const [selectedDate, setDate] = useState(new Date());
     const [key, setKey] = useState('tiket');
     const [mergeData, setMergeData] = useState([]);
@@ -263,9 +277,11 @@ function Tiket(state) {
         if (response != null) {
           let code = response.code;
           if (code == 200) {
-            state.dispatch(loadData1(response.data))
+            let filteredData = selectedMaskapai.value ? filterByValue(response.data, selectedMaskapai.value , 'title') : response.data
+            filteredData = selecetedTime.value ? filterByValue(filteredData, selecetedTime.value , 'time_departure') : filteredData
+            state.dispatch(loadData1(filteredData))
             state.dispatch(setLoading(false))
-            temporary = response.data ? response.data : [];
+            temporary = filteredData ? filteredData : [];
           } else if (code == 403) {
             state.dispatch(loadData1(null))
             state.dispatch(setLoading(false))
@@ -285,9 +301,11 @@ function Tiket(state) {
         if (response2 != null) {
             let code = response2.code;
             if (code == 200) {
-              state.dispatch(loadData2(response2.data))
+              let filteredData = selectedMaskapai.value ? filterByValue(response2.data, selectedMaskapai.value , 'title') : response2.data
+              filteredData = selecetedTime.value ? filterByValue(filteredData, selecetedTime.value , 'time_departure') : filteredData
+              state.dispatch(loadData2(filteredData))
               state.dispatch(setLoading2(false))
-              temporary = response2.data ? temporary.concat(response2.data) : temporary;
+              temporary = filteredData ? temporary.concat(filteredData) : temporary;
             } else if (code == 403) {
               state.dispatch(loadData2(null))
               state.dispatch(setLoading2(false))
@@ -306,10 +324,12 @@ function Tiket(state) {
         if (response3 != null) {
             let code = response3.code;
             if (code == 200) {
-              state.dispatch(loadData3(response3.data))
+              let filteredData = selectedMaskapai.value ? filterByValue(response3.data, selectedMaskapai.value , 'title') : response3.data
+              filteredData = selecetedTime.value ? filterByValue(filteredData, selecetedTime.value , 'time_departure') : filteredData
+              state.dispatch(loadData3(filteredData))
               state.dispatch(setLoading3(false))
-              temporary = response3.data ? temporary.concat(response3.data) : temporary;
-              setMergeData(temporary);
+              temporary = filteredData ? temporary.concat(filteredData) : temporary;
+              setMergeData(selectedMaskapai.value ? filterByValue(temporary, selectedMaskapai.value , 'title') : temporary);
             } else if (code == 403) {
               state.dispatch(loadData3(null))
               state.dispatch(setLoading3(false))
@@ -326,6 +346,23 @@ function Tiket(state) {
         }
 
     } 
+
+    function filterByValue(array, string , key) {
+        return array.filter((data) =>  data[key].toLowerCase().includes(string.toLowerCase()));
+    }
+
+    function filterByTimeAndMaskapai(array) {
+        let temporary;
+        if(selectedMaskapai.value){
+            temporary =  array.filter((data) =>  data['title'].toLowerCase().includes(selectedMaskapai.value.toLowerCase()));
+        }
+
+        if(selecetedTime.value){
+            temporary = temporary.filter((data) =>  data['time_departure'].toLowerCase().includes(selecetedTime.value.toLowerCase()));
+        }
+        
+        return selecetedTime.value || selectedMaskapai.value ? temporary : array
+    }
 
     function onDelete(e, id) {
         e.preventDefault();
@@ -365,6 +402,14 @@ function Tiket(state) {
         setDestination(selectedOption)
     }
 
+    function onSelectMaskapai(selectedOption) {
+        setMaskapai(selectedOption)
+    }
+
+    function onSelectTime(selectedOption) {
+        setTime(selectedOption)
+    }
+
     function onDateChange(date) {
         setDate(date);
     }
@@ -384,7 +429,7 @@ function Tiket(state) {
                     <div className="card mt-3">
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}>
                             <div className="row">
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedOrigin}
                                         onChange={onSelectChangeOrigin}
@@ -392,7 +437,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedDestination}
                                         onChange={onSelectChangeDestination}
@@ -400,7 +445,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <DatePicker
                                         selected={selectedDate}
                                         dateFormat="dd/MM/yyyy"
@@ -413,8 +458,24 @@ function Tiket(state) {
                                         className="form-control"
                                         disabled={state.isLoading}
                                     />
-                                    </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                </div>
+                                <div className="col-md-4 col-sm-12 mb-1">
+                                    <Select
+                                        value={selectedMaskapai}
+                                        onChange={onSelectMaskapai}
+                                        placeholder={"Pilih Maskapai"}
+                                        options={optionsMaskapai}
+                                    />
+                                </div>
+                                <div className="col-md-4 col-sm-12 mb-1">
+                                    <Select
+                                        value={selecetedTime}
+                                        onChange={onSelectTime}
+                                        placeholder={"Pilih Jam Penerbangan"}
+                                        options={optionsTime}
+                                    />
+                                </div>
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <button
                                         id="appliedButton"
                                         type="button"
@@ -435,23 +496,23 @@ function Tiket(state) {
                         </div>
                         <Tabs
                             fill justify
-                            id="tiket_com"
+                            id="all"
                             activeKey={key}
                             onSelect={(k) => setKeyTab(k)}
                         >
                                 <Tab eventKey="all" title={<b>Semua</b>} >  
                                 {state.loading==false  && state.loading2==false && state.loading3 == false?
-                                    (state.data1!=null || state.data2!=null || state.data3!=null ? 
+                                    (mergeData!=null ? 
                                         <div>
                                             <div className="card-body table-responsive ">
                                                 <BootstrapTable
                                                     keyField="no"
-                                                    data={ mergeData }
+                                                    data={ filterByTimeAndMaskapai(mergeData) }
                                                     columns={ columnsAll }
                                                     bordered={ false }
                                                     hover
                                                 />
-                                                {state.data1 && state.data1.length<1 ? <NoData image="images/no-data.png" title="NO DATA Flight" 
+                                                {mergeData && mergeData.length<1 ? <NoData image="images/no-data.png" title="NO DATA Flight" 
                                                     description="No Data Flight yet"/> : ""
                                                 } 
                                             </div>

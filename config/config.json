@@ -5,13 +5,149 @@
   },
   "core": {
     "private_gateway": {
-      "base_url" : "http://103.126.226.5/api/v1",
+      "base_url" : "http://localhost:5000/api/v1",
       "base_url_prod" : "http://103.126.226.5/api/v1",
       "tiket" : "/public/tiket",
       "pegipegi" : "/public/pegi-pegi",
       "misteraladin" : "/public/mister-aladin",
       "agoda" : "/public/agoda"
     }
+  },
+  "maskapai" : {
+    "data" : [
+      {
+        "value" : null,
+        "label" : "Semua Maskapai"
+      },
+      {
+        "value" : "Garuda",
+        "label" : "Garuda Indonesia"
+      },
+      {
+        "value" : "Lion",
+        "label" : "Lion Air"
+      },
+      {
+        "value" : "Batik Air",
+        "label" : "Batik Air"
+      },
+      {
+        "value" : "Citilink",
+        "label" : "Citilink"
+      },
+      {
+        "value" : "Sriwijaya",
+        "label" : "Sriwijaya Air"
+      },
+      {
+        "value" : "Nam",
+        "label" : "Nam Air"
+      }
+    ]
+  },
+  "time" : {
+    "data" : [
+      {
+        "value" : null,
+        "label" : "Semua Jam Penerbangan"
+      },
+      {
+        "value" : "00:",
+        "label" : "00:00 WIB"
+      },
+      {
+        "value" : "01:",
+        "label" : "01:00 WIB"
+      },
+      {
+        "value" : "02:",
+        "label" : "02:00 WIB"
+      },
+      {
+        "value" : "03:",
+        "label" : "03:00 WIB"
+      },
+      {
+        "value" : "04:",
+        "label" : "04:00 WIB"
+      },
+      {
+        "value" : "05:",
+        "label" : "05:00 WIB"
+      },
+      {
+        "value" : "06:",
+        "label" : "06:00 WIB"
+      },
+      {
+        "value" : "07:",
+        "label" : "07:00 WIB"
+      },
+      {
+        "value" : "08:",
+        "label" : "08:00 WIB"
+      },
+      {
+        "value" : "09:",
+        "label" : "09:00 WIB"
+      },
+      {
+        "value" : "10:",
+        "label" : "10:00 WIB"
+      },
+      {
+        "value" : "11:",
+        "label" : "11:00 WIB"
+      },
+      {
+        "value" : "12:",
+        "label" : "12:00 WIB"
+      },
+      {
+        "value" : "13:",
+        "label" : "13:00 WIB"
+      },
+      {
+        "value" : "14:",
+        "label" : "14:00 WIB"
+      },
+      {
+        "value" : "15:",
+        "label" : "15:00 WIB"
+      },
+      {
+        "value" : "16:",
+        "label" : "16:00 WIB"
+      },
+      {
+        "value" : "17:",
+        "label" : "17:00 WIB"
+      },
+      {
+        "value" : "18:",
+        "label" : "18:00 WIB"
+      },
+      {
+        "value" : "19:",
+        "label" : "19:00 WIB"
+      },
+      {
+        "value" : "20:",
+        "label" : "20:00 WIB"
+      },
+      {
+        "value" : "21:",
+        "label" : "21:00 WIB"
+      },
+      {
+        "value" : "22:",
+        "label" : "22:00 WIB"
+      },
+      {
+        "value" : "23:",
+        "label" : "23:00 WIB"
+      }
+    ]
   },
   "flight_code" : {
     "data":[
