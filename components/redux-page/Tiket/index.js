@@ -429,7 +429,7 @@ function Tiket(state) {
                     <div className="card mt-3">
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}>
                             <div className="row">
-                                <div className="col-md-4 col-sm-12 mb-1">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <Select
                                         value={selectedOrigin}
                                         onChange={onSelectChangeOrigin}
@@ -437,7 +437,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-4 col-sm-12 mb-1">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <Select
                                         value={selectedDestination}
                                         onChange={onSelectChangeDestination}
@@ -445,7 +445,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-4 col-sm-12 mb-1">
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <DatePicker
                                         selected={selectedDate}
                                         dateFormat="dd/MM/yyyy"
@@ -459,7 +459,7 @@ function Tiket(state) {
                                         disabled={state.isLoading}
                                     />
                                 </div>
-                                <div className="col-md-4 col-sm-12 mb-1">
+                               {/* <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedMaskapai}
                                         onChange={onSelectMaskapai}
@@ -474,8 +474,9 @@ function Tiket(state) {
                                         placeholder={"Pilih Jam Penerbangan"}
                                         options={optionsTime}
                                     />
-                                </div>
-                                <div className="col-md-4 col-sm-12 mb-1">
+                                </div> */}
+                                
+                                <div className="col-md-3 col-sm-12 mb-1">
                                     <button
                                         id="appliedButton"
                                         type="button"
