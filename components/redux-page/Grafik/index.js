@@ -25,6 +25,21 @@ function Grafik(state) {
         value : null,
         label : "Pilih Kota Tujuan"
     });
+
+    const [ selectedMaskapai, setMaskapai ] = useState({
+        value : null,
+        label : "Pilih Maskapai Penerbangan"
+    });
+
+
+    const [selecetedTime ,setTime] = useState({
+        value : null,
+        label : "Pilih Waktu Penerbangan"
+    })
+
+
+    const [optionsMaskapai ,setOptionsMaskapai] = useState(config.maskapai.data)
+    const [optionsTime ,setOptionsTime] = useState(config.time.data)
     const [optionsAirport , setOptionsAirport] = useState(config.flight_code.data)
     const [selectedDate, setDate] = useState(new Date());
     const [key, setKey] = useState('tiket');
@@ -122,7 +137,27 @@ function Grafik(state) {
             }
         },
     ];
-    
+
+    function onSelectMaskapai(selectedOption) {
+        setMaskapai(selectedOption)
+    }
+
+    function onSelectTime(selectedOption) {
+        setTime(selectedOption)
+    }
+
+        function filterByTimeAndMaskapai(array) {
+        let temporary;
+        if(selectedMaskapai.value){
+            temporary =  array.filter((data) =>  data['title'].toLowerCase().includes(selectedMaskapai.value.toLowerCase()));
+        }
+
+        if(selecetedTime.value &&  temporary){
+            temporary = temporary.filter((data) =>  data['time_departure'].toLowerCase().includes(selecetedTime.value.toLowerCase()));
+        }
+        
+        return selecetedTime.value || selectedMaskapai.value ? temporary : array
+    }
     const processData = async () => {
         state.dispatch(setLoading(true))
         state.dispatch(setLoading2(true))
@@ -264,8 +299,8 @@ function Grafik(state) {
                 <div className="col-12">
                     <div className="card mt-3">
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}>
-                            <div className="row">
-                                <div className="col-md-3 col-sm-12 mb-1">
+                        <div className="row">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedOrigin}
                                         onChange={onSelectChangeOrigin}
@@ -273,7 +308,7 @@ function Grafik(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedDestination}
                                         onChange={onSelectChangeDestination}
@@ -281,7 +316,7 @@ function Grafik(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <DatePicker
                                         selected={selectedDate}
                                         dateFormat="dd/MM/yyyy"
@@ -294,8 +329,24 @@ function Grafik(state) {
                                         className="form-control"
                                         disabled={state.isLoading}
                                     />
-                                    </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                </div>
+                               <div className="col-md-4 col-sm-12 mb-1">
+                                    <Select
+                                        value={selectedMaskapai}
+                                        onChange={onSelectMaskapai}
+                                        placeholder={"Pilih Maskapai"}
+                                        options={optionsMaskapai}
+                                    />
+                                </div>
+                                <div className="col-md-4 col-sm-12 mb-1">
+                                    <Select
+                                        value={selecetedTime}
+                                        onChange={onSelectTime}
+                                        placeholder={"Pilih Jam Penerbangan"}
+                                        options={optionsTime}
+                                    />
+                                </div> 
+                                <div className="col-md-4  col-sm-12 mb-1">
                                     <button
                                         id="appliedButton"
                                         type="button"
@@ -314,7 +365,7 @@ function Grafik(state) {
                         </div>
                         <div className="row m-4 centerFlex">  
                             {state.loading || state.loading2 || state.loading3 ? <Loading color={"#964b00"} height={'12%'} width={'12%'} />  : state.data1 && state.data2 && state.data3 ?
-                                <VerticalBar data1={state.data1} data2={state.data2} data3={state.data3}/> : "" }
+                                <VerticalBar data1={filterByTimeAndMaskapai(state.data1)} data2={filterByTimeAndMaskapai(state.data2)} data3={filterByTimeAndMaskapai(state.data3)}/> : "" }
                         </div>
                     </div>
                 </div>

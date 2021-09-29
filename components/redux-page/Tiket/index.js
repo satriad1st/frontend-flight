@@ -46,6 +46,25 @@ function Tiket(state) {
     const [selectedDate, setDate] = useState(new Date());
     const [key, setKey] = useState('tiket');
     const [mergeData, setMergeData] = useState([]);
+
+    function reproduceDepartureArrival(content){
+        let findData = config.flight_code.data.filter((data) =>  data['value'] == content);
+        if (findData.length > 0) {
+            return findData[0].label + " ("+content+")"
+        }else{
+            return content
+        }
+    }
+
+    function reproduceLogo(content, logo){
+        let findData = config.maskapai.data.filter((data) =>  data['value'] && content.toLowerCase().includes(data['value'].toLowerCase()));
+        if (findData.length > 0) {
+            return findData[0].images
+        }else{
+            return logo
+        }
+    }
+
     const columns = [
         {
             dataField: 'no',
@@ -66,8 +85,8 @@ function Tiket(state) {
             },
             formatter: (cellContent, row) => {
                 return (
-                    <div>
-                      <span className="ml-2 font-weight-bold"> <img src={row.logo} style={{width:"60px"}}/>  </span>
+                    <div>   
+                        <span className="ml-2 font-weight-bold"> <img src={reproduceLogo(cellContent , row.logo)} style={{width:"60px"}}/>  </span>
                     </div>
                 );
             }
@@ -82,7 +101,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
                 return (
                     <div>
-                      <p className="font-weight-bold mb-0">{cellContent}</p>
+                      <p className="font-weight-bold mb-0">{reproduceDepartureArrival(cellContent)}</p>
                       <p className="">{row.time_departure}</p>
                     </div>
                 );
@@ -98,7 +117,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
               return (
                   <div>
-                    <p className="font-weight-bold mb-0">{cellContent}</p>
+                    <p className="font-weight-bold mb-0">{reproduceDepartureArrival(cellContent)}</p>
                     <p className="">{row.time_arrival}</p>
                   </div>
               );
@@ -108,13 +127,13 @@ function Tiket(state) {
             dataField: 'duration',
             text : "Durasi",
             headerStyle: {
-                width: '15%',
+                width: '10%',
                 whiteSpace : "nowrap"
             },
             formatter: (cellContent, row) => {
                 return (
                     <div>
-                      <p className="font-weight-bold mb-0">{cellContent}</p>
+                      <p className="font-weight-bold mb-0">{cellContent.replace("h","j")}</p>
                     </div>
                 );
             }
@@ -177,7 +196,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
                 return (
                     <div>
-                      <span className="ml-2 font-weight-bold"> <img src={row.logo} style={{width:"60px"}}/>  </span>
+                        <span className="ml-2 font-weight-bold"> <img src={reproduceLogo(cellContent , row.logo)} style={{width:"60px"}}/>  </span>
                     </div>
                 );
             }
@@ -192,7 +211,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
                 return (
                     <div>
-                      <p className="font-weight-bold mb-0">{cellContent}</p>
+                      <p className="font-weight-bold mb-0">{reproduceDepartureArrival(cellContent)}</p>
                       <p className="">{row.time_departure}</p>
                     </div>
                 );
@@ -208,7 +227,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
               return (
                   <div>
-                    <p className="font-weight-bold mb-0">{cellContent}</p>
+                    <p className="font-weight-bold mb-0">{reproduceDepartureArrival(cellContent)}</p>
                     <p className="">{row.time_arrival}</p>
                   </div>
               );
@@ -224,7 +243,7 @@ function Tiket(state) {
             formatter: (cellContent, row) => {
                 return (
                     <div>
-                      <p className="font-weight-bold mb-0">{cellContent}</p>
+                      <p className="font-weight-bold mb-0">{cellContent.replace("h","j")}</p>
                     </div>
                 );
             }
@@ -329,6 +348,33 @@ function Tiket(state) {
               state.dispatch(loadData3(filteredData))
               state.dispatch(setLoading3(false))
               temporary = filteredData ? temporary.concat(filteredData) : temporary;
+              let price;
+              for(const element of temporary) {
+                price = element.price
+                if(element.source == "tiket.com"){
+                    price = price.replace("IDR ","");
+                    price = price.replace(/\./g,"")
+                    price = parseFloat(price)
+                }
+
+                if(element.source == "pegipegi"){
+                    price = price.replace("Rp ","");
+                    price = price.replace(/\./g,"")
+                    price = parseFloat(price)
+                }
+
+                if(element.source == "agoda"){
+                    price = price.replace("Rp. ","");
+                    price = price.replace(/,/g,"")
+                    price = parseFloat(price);
+                }
+
+                element.real_price = price;
+              }
+              temporary.sort(function (a, b) {
+                return a.real_price - b.real_price;
+              });
+              console.log(temporary)
               setMergeData(selectedMaskapai.value ? filterByValue(temporary, selectedMaskapai.value , 'title') : temporary);
             } else if (code == 403) {
               state.dispatch(loadData3(null))
@@ -357,7 +403,7 @@ function Tiket(state) {
             temporary =  array.filter((data) =>  data['title'].toLowerCase().includes(selectedMaskapai.value.toLowerCase()));
         }
 
-        if(selecetedTime.value){
+        if(selecetedTime.value &&  temporary){
             temporary = temporary.filter((data) =>  data['time_departure'].toLowerCase().includes(selecetedTime.value.toLowerCase()));
         }
         
@@ -429,7 +475,7 @@ function Tiket(state) {
                     <div className="card mt-3">
                         <div className="card-header" style={{backgroundColor:"#f9f9fc"}}>
                             <div className="row">
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedOrigin}
                                         onChange={onSelectChangeOrigin}
@@ -437,7 +483,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedDestination}
                                         onChange={onSelectChangeDestination}
@@ -445,7 +491,7 @@ function Tiket(state) {
                                         options={optionsAirport}
                                     />
                                 </div>
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                <div className="col-md-4 col-sm-12 mb-1">
                                     <DatePicker
                                         selected={selectedDate}
                                         dateFormat="dd/MM/yyyy"
@@ -459,7 +505,7 @@ function Tiket(state) {
                                         disabled={state.isLoading}
                                     />
                                 </div>
-                               {/* <div className="col-md-4 col-sm-12 mb-1">
+                               <div className="col-md-4 col-sm-12 mb-1">
                                     <Select
                                         value={selectedMaskapai}
                                         onChange={onSelectMaskapai}
@@ -474,9 +520,8 @@ function Tiket(state) {
                                         placeholder={"Pilih Jam Penerbangan"}
                                         options={optionsTime}
                                     />
-                                </div> */}
-                                
-                                <div className="col-md-3 col-sm-12 mb-1">
+                                </div> 
+                                <div className="col-md-4  col-sm-12 mb-1">
                                     <button
                                         id="appliedButton"
                                         type="button"

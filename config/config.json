@@ -5,7 +5,7 @@
   },
   "core": {
     "private_gateway": {
-      "base_url" : "http://103.126.226.5/api/v1",
+      "base_url" : "http://localhost:5000/api/v1",
       "base_url_prod" : "http://103.126.226.5/api/v1",
       "tiket" : "/public/tiket",
       "pegipegi" : "/public/pegi-pegi",
@@ -21,27 +21,48 @@
       },
       {
         "value" : "Garuda",
-        "label" : "Garuda Indonesia"
+        "label" : "Garuda Indonesia",
+        "images" : "images/garuda-indonesia.png"
       },
       {
         "value" : "Lion",
-        "label" : "Lion Air"
+        "label" : "Lion Air",
+        "images" : "images/lion-air.png"
       },
       {
         "value" : "Batik Air",
-        "label" : "Batik Air"
+        "label" : "Batik Air",
+        "images" : "images/batik-air.png"
       },
       {
         "value" : "Citilink",
-        "label" : "Citilink"
+        "label" : "Citilink",
+        "images" : "images/citilink.png"
       },
       {
         "value" : "Sriwijaya",
-        "label" : "Sriwijaya Air"
+        "label" : "Sriwijaya Air",
+        "images" : "images/sriwijaya-air.png"
       },
       {
         "value" : "Nam",
-        "label" : "Nam Air"
+        "label" : "Nam Air",
+        "images" : "images/citilink.png"
+      },
+      {
+        "value" : "Super Air",
+        "label" : "Super Air Jet",
+        "images" : "images/super-air-jet.png"
+      },
+      {
+        "value" : "Asia",
+        "label" : "Air Asia",
+        "images" : "images/air-asia.png"
+      },
+      {
+        "value" : "Multi",
+        "label" : "Transit",
+        "images" : "images/multiple-airlines.jpg"
       }
     ]
   },
