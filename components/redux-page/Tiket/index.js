@@ -401,6 +401,8 @@ function Tiket(state) {
         let temporary;
         if(selectedMaskapai.value){
             temporary =  array.filter((data) =>  data['title'].toLowerCase().includes(selectedMaskapai.value.toLowerCase()));
+        }else{
+            temporary = array
         }
 
         if(selecetedTime.value &&  temporary){
